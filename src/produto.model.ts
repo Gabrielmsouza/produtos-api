@@ -1,25 +1,36 @@
-export class Produto {
-    private _id: number;
-    private _codigo: string;
-    private _nome: string;
-    private _preco: number;
 
-    constructor(codigo: string, nome: string, preco: number) {
-        this._codigo = codigo;
-        this._nome = nome;
-        this._preco = preco;
+import { Table, Model, Column, DataType } from "sequelize-typescript";
+
+@Table
+export class Produto extends Model<Produto>{
+    @Column({
+        type: DataType.STRING(60),
+        allowNull: false
+    })
+    private codigo: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    private nome: string;
+
+    @Column({ 
+        type: DataType.DECIMAL(10,2),
+        allowNull: false
+    })
+    private preco: number;
+
+    public get Codigo(): string {
+        return this.codigo
     }
 
-    public get codigo(): string {
-        return this._codigo
+    public get Nome(): string {
+        return this.nome;
     }
-
-    public get nome(): string {
-        return this._nome;
-    }
-
-    public get preco(): number {
-        return this._preco;
+ 
+    public get Preco(): number {
+        return this.preco;
     }
 
 
